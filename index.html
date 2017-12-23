@@ -70,6 +70,95 @@
                         <h2>Signal Preprocessing</h2>
                     </section>
                     <section>
+                        <h3>Audio Waveform</h3>
+                        <img src="image/speech_wave.jpg" alt="Speech Waveform" width="80%">
+                        <p>Transcription: "mining a year of speech"</p>
+                    </section>
+                    <section>
+                        <h3>MFCC</h3>
+                        <ul>
+                            <li>Mel-frequency cepstral coefficients</li>
+                            <li>在語音辨識和語者辨識方面，最常用到的語音特徵就是「梅爾倒頻譜係數」，此參數考慮到人耳對不同頻率的感受程度，因此特別適合用在語音辨識</li>
+                        </ul>
+                        <img src="image/mfcc.jpg" alt="MFCC" width="80%">
+                    </section>
+                    <section>
+                        <h3>Pre-emphasis</h3>
+                        <p>將語音訊號 $s(t)$ 通過一個高通濾波器</p>
+                        <img src="image/pre-emphasis.png" alt="Pre-emphasis" width="50%">
+                        <p>$$ s'(t) = s(t) - a \cdot s(t-1),\ 0.9 \leq a \leq 1.0$$</p>
+                    </section>
+                    <section>
+                        <h3>Framing &amp; Windowing</h3>
+                        <p align="left">
+                            Frame blocking
+                            <ul>
+                                <li>N samples => frame (N = 256 or 512)</li>
+                                <li>A frame covers 20~30 ms with overlapping</li>
+                            </ul>
+                        </p>
+                        <p align="left">
+                            Hamming window
+                            <ul>
+                                <li>Multiply framed signals with a window</li>
+                            </ul>
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Hamming Window</h3>
+                        <img src="image/hamming_window.png" alt="Hamming Window" width="60%">
+                    </section>
+                    <section>
+                        <h3>Windowed Signal (Noisy)</h3>
+                        <img src="image/windowing1.png" alt="Windowing" width="60%">
+                    </section>
+                    <section>
+                        <h3>Windowed Signal (Speech)</h3>
+                        <img src="image/windowing2.png" alt="Windowing" width="60%">
+                    </section>
+                    <section>
+                        <h3>Fast Fourier Transform</h3>
+                        <p align="left">由於訊號在時域（Time Domain）上的變化通常很難看出訊號的特性，所以通常將它轉換成頻域（Frequency Domain）上的能量分佈來觀察。不同的能量分佈，就能代表不同語音的特性。所以在 windowing 後，每個音框還必需再經過 FFT 以得到在頻譜上的能量分佈</p>
+                    </section>
+                    <section>
+                        <h3>Triangular Bandpass Filters</h3>
+                        <ul align="left">
+                            <li>將能量頻譜能量乘以一組 20 個三角帶通濾波器，求得每一個濾波器輸出的對數能量（Log Energy）</li>
+                            <li>這 20 個三角帶通濾波器在「梅爾頻率」（Mel Frequency）上是平均分佈的</li>
+                            <li>梅爾頻率代表一般人耳對於頻率的感受度</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Mel-frequency</h3>
+                        <img src="image/mel-freq.png" alt="Mel-frequency" width="60%">
+                    </section>
+                    <section>
+                        <h3>Triangular Filters</h3>
+                        <img src="image/triangular_filter.jpg" alt="Triangular filter">
+                    </section>
+                    <section>
+                        <h3>Discrete cosine transform</h3>
+                        <ul align="left">
+                            <li>將前述的 20 個對數能量 $E_k$ 帶入離散餘弦轉換，求出 $L$ 階的 Mel-scale Cepstrum 參數（$L$ 通常取 12）</li>
+                            <li>轉回類似 Time Domain 的情況來看，又稱 Quefrency Domain，其實也就是 Cepstrum</li>   
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Log energy</h3>
+                        <p align="left">一個音框的音量（即能量），也是語音的重要特徵。我們通常再加上一個音框的對數能量，使得每一個音框基本的語音特徵就有 13 維</p>
+                    </section>
+                    <section>
+                        <h3>Delta cepstrum</h3>
+                        <ul align="left">
+                            <li>截至目前為止，我們得到了 13 維的特徵</li>
+                            <li>實際應用於語音辨識時，我們通常會再加上 delta cepstrum（一階導數），以顯示 cepstral coefficients 對時間的變化</li>
+                            <li>再加個二階導數，就得到總共 39 維的 Mel-frequency cepstral coefficients</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <p>就這樣，我們得到了 39 維的 MFCC。算是一種放之四海皆準的特徵，在不同的語音處理工作中都可以比較好的發揮其作用。</p>
+                    </section>
+                    <section>
                         <h3>Reference</h3>
                         <ul>
                             <li>李琳山 - 語音處理概論 <a href="http://speech.ee.ntu.edu.tw/DSP2017Autumn/Slides/2.0.pptx">2.0 Fundamentals of Speech Recognition</a></li>
@@ -125,9 +214,19 @@
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
+                    { src: 'plugin/math/math.js', async: true },
 					{ src: 'plugin/notes/notes.js', async: true },
 					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
+				],
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+                slideNumber: true,
+                math: {
+                    mathjax: 'https://cdn.mathjax.org/mathjax/latest/MathJax.js',
+                    config: 'TeX-AMS_HTML-full'
+                }
 			});
 		</script>
 	</body>
