@@ -173,6 +173,61 @@
                         <h2>Acoustic Modeling</h2>
                     </section>
                     <section>
+                        <h3>Acoustic Modeling</h3>
+                        <p align="left">聲學模型（Acoustic Model），使用於 HMM 的一個抽象單位，通常一個聲學模型包含數個狀態。我們可以使用音節（Syllables）、音素（Phoneme）甚至單詞（Word）作為一個聲學模型</p>
+                    </section>
+                    <section>
+                        <h3>Phoneme Model</h3>
+                        <ul>
+                            <li>Monophone</li>
+                            <li>Biphone</li>
+                            <li>Triphone</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Triphone Model</h3>
+                        <ul>
+                            <li>
+                                A phoneme model taking into consideration both left and right neighboring phonemes
+                                $$ 60^3 = 216000 $$
+                            </li>
+                            <li>Very good generalizability and accuracy</li>
+                            <li>By parameter-sharing techniques, we could make a balance between accuracy/trainability</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Parameter Sharing</h3>
+                        <img src="image/parameter_sharing.png" alt="Parameter Sharing">
+                    </section>
+                    <section>
+                        <h3>Clustering by Decision Trees</h3>
+                        <img src="image/decision_tree.png" alt="Decision Tree Clustering" width="40%">
+                    </section>
+                    <section>
+                        <img src="image/phone_model.png" alt="Phone Model">
+                    </section>
+                    <section>
+                        <h3>Take a Look At HMM</h3>
+                    </section>
+                    <section>
+                        <img src="image/emoji_hmm.png" alt="Emoji HMM">
+                        <p>hmm...</p>
+                    </section>
+                    <section>
+                        <h3>Hidden Markov Model</h3>
+                        <img src="image/hmm-3-states.png" alt="HMM">
+                        <p>$ \lambda_{HMM} = (A, B, \pi) $</p>
+                    </section>
+                    <section>
+                        <h3>Gaussian Mixture Model</h3>
+                        <p align="left">高斯混合模型（GMM）是用多個高斯機率密度函數精確地量化變量分布，是將變量分布分解為若干基於高斯機率密度函數分布的統計模型</p>
+                        <img src="image/gmm-1d.png" alt="Gaussian Mixture Model" width="50%">
+                    </section>
+                    <section>
+                        <h3>Model Hierarchy (Biphone)</h3>
+                        <img src="image/acoustic_model_hierarchy.png" alt="Acoustic Model Hierarchy" width="70%">
+                    </section>
+                    <section>
                         <h3>Reference</h3>
                         <ul>
                             <li>張智星 - 音訊處理與辨識 <a href="http://mirlab.org/jang/books/audioSignalProcessing/ppLexiconNet.asp?title=18-3%20%BF%EB%C3%D1%BA%F4%B8%F4">18-3 辨識網路</a></li>
