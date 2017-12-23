@@ -140,7 +140,7 @@
                         <h3>Discrete cosine transform</h3>
                         <ul align="left">
                             <li>將前述的 20 個對數能量 $E_k$ 帶入離散餘弦轉換，求出 $L$ 階的 Mel-scale Cepstrum 參數（$L$ 通常取 12）</li>
-                            <li>轉回類似 Time Domain 的情況來看，又稱 Quefrency Domain，其實也就是 Cepstrum</li>   
+                            <li>轉回類似 Time Domain 的情況來看，又稱 Quefrency Domain，其實也就是 Cepstrum</li>
                         </ul>
                     </section>
                     <section>
@@ -248,17 +248,39 @@
                         <img src="image/lm_example.png" alt="LM Example">
                     </section>
                     <section>
-                        <h3>Entropy and Perplexity</h3>
+                        <h3>Entropy</h3>
+                        <p>$$ H(S) = - \sum_i{p(x_i) \log_2{p(x_i)}} $$</p>
+                        <br>
+                        <ul>
+                            <li>e.g. 英文字母大小寫 $$ H(S) = - \sum_1^{52}{\frac{1}{52} \log_2{\frac{1}{52}}} \approx 6bits $$  </li>
+                        </ul>
                     </section>
                     <section>
-                        <h3>Class-based Language Modeling</h3>
+                        <h3>Perplexity</h3>
+                        <p>$$ PP(S) = 2^{H(S)} $$</p>
+                        <br>
+                        <ul>
+                            <li>e.g. 英文字母大小寫 $$ PP(S) = 52 $$</li>
+                        </ul>
                     </section>
                     <section>
-                        <h3>Word-based Language Modeling</h3>
+                        <img src="image/perplexity.png" alt="Perplexity" width="80%">
                     </section>
                     <section>
-                        <h3>Character-based Language Modeling</h3>
+                        <h3>Smoothing</h3>
+                        <ul>
+                            <li>Add-one Smoothing</li>
+                            <li>Back-off Smoothing</li>
+                            <li>Interpolation Smoothing</li>
+                            <li>Good-Turing Smoothing</li>
+                            <li>Katz Smoothing</li>
+                        </ul>
                     </section>
+                    <section>
+                        <h3>Language Modeling</h3>
+                        <img src="image/language_modeling.png" alt="Language Modeling" width="75%">
+                    </section>
+
                     <section>
                         <h3>Reference</h3>
                         <ul>
